@@ -1,0 +1,37 @@
+authorName: theRealChainman
+experimentName: car_insurance-FC
+trialConcurrency: 1
+maxExecDuration: 1h
+maxTrialNum: 20
+trainingServicePlatform: frameworkcontroller
+searchSpacePath: search_space.json
+useAnnotation: false
+tuner:
+    builtinTunerName: TPE
+    classArgs:
+        optimize_mode: maximize
+assessor:
+    builtinAssessorName: Medianstop
+    classArgs:
+        optimize_mode: maximize
+trial:
+    codeDir: . 
+    taskRoles:
+      - name: worker
+        taskNum: 1
+        command: python3 car.py
+        gpuNum: 0
+        cpuNum: 1
+        memoryMB: 1000
+        image: ?
+        gpuNum: 0
+        frameworkAttemptCompletionPolicy:
+            minFailedTaskCount: 1
+            minSucceededTaskCount: 1
+frameworkcontrollerConfig:
+    configPath: frameworkcontroller.yaml
+    storage: pvc
+    namespace: argo
+    pvc:
+        path: /data
+    
