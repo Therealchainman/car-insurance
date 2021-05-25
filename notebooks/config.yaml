@@ -23,7 +23,7 @@ trial:
         gpuNum: 0
         cpuNum: 1
         memoryMB: 1000
-        image: ?
+        image: toddchaney/nni
         gpuNum: 0
         frameworkAttemptCompletionPolicy:
             minFailedTaskCount: 1
